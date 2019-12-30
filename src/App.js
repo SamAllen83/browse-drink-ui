@@ -35,7 +35,7 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    const host = process.env.REACT_APP_CONTENT_HOST;
+    const host = process.env.REACT_APP_CONTENT_HOST || 'http://beveragebotbar.com/content';
     fetch(`${host}/restaurants.json`)
       .then(result => result.json())
       .then(restaurants => {
