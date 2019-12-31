@@ -35,14 +35,15 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    const host = process.env.REACT_APP_CONTENT_HOST || 'http://beveragebotbar.com/content';
-    fetch(`${host}/restaurants.json`)
+    const browseHost = process.env.REACT_APP_BROWSE_HOST || 'http://beveragebotbar.com/browse';
+    const contentHost = process.env.REACT_APP_CONTENT_HOST || 'http://beveragebotbar.com/content';
+    fetch(`${browseHost}/api/restaurants.json`)
       .then(result => result.json())
       .then(restaurants => {
         this.setState({
           restaurants: restaurants.map(restaurant => ({
             ...restaurant,
-            imageSrc: `${host}${restaurant.imageSrc}`,
+            imageSrc: `${contentHost}${restaurant.imageSrc}`,
           })),
           loading: false,
         });
